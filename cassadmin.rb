@@ -10,16 +10,48 @@ get '/' do
   haml :home 
 end
 
-get '/keyspaces/:keyspace' do
+get '/keyspaces/:keyspace/columnfamilies' do
   client = Cassandra.new(params[:keyspace])
   @keyspace = params[:keyspace]
-  @cf = client.column_families #hash
+  @cfContent = client.column_families #hash
   haml :cf
 end
 
-get '/keyspaces/:keyspace/:cf' do
+get '/keyspaces/:keyspace/columnfamilies/:cf/keys' do
   @client = Cassandra.new(params[:keyspace])
   @keyspace = params[:keyspace]
   @cf = params[:cf]
   haml :cfspecs
+end
+
+get '/keyspaces/:keyspace/columnfamilies/:cf/keys/:key' do
+  @client = Cassandra.new(params[:keyspace])
+  @keyspace = params[:keyspace]
+  @cf = params[:cf]
+  @key = params[:key]
+  @data = @client.get(@cf, @key)
+
+  haml :key
+end
+
+helpers do
+  def nav
+    html = []
+
+    html << "<li class=\"page\"><a href=\"/\">Keyspaces</a></li>"
+
+    if @keyspace
+      html << "<li>&raquo;<a href=\"/keyspaces/#{@keyspace}/columnfamilies\">#{@keyspace}</a></li>"
+      html << "<li class=\"page\">&raquo;<a href=\"/keyspaces/#{@keyspace}/columnfamilies\">Column families</a></li>"
+    end
+
+    if @cf
+      html << "<li>&raquo;<a href=\"/keyspaces/#{@keyspace}/columnfamilies/#{@cf}/keys\">#{@cf}</a></li>"
+      html << "<li class=\"page\">&raquo;<a href=\"/keyspaces/#{@keyspace}/columnfamilies/#{@cf}/keys\">Keys</a></li>"
+    end
+
+    html << "<li>&raquo;<a href=\"/keyspaces/#{@keyspace}/columnfamilies/#{@cf}/keys/#{@key}\">#{@key}</a></li>" if @key
+
+    "<ul id=\"nav\">#{html.join}</ul>"
+  end
 end

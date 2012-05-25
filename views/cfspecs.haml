@@ -1,2 +1,4 @@
+%h1 Keys
 - @client.each(@cf) do |k,v|
-    %p= k
+  %p
+    %a{:href => "/keyspaces/#{@keyspace}/columnfamilies/#{@cf}/keys/#{k}"}= k

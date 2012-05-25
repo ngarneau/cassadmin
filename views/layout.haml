@@ -1,7 +1,11 @@
 !!! 5
 %html
-	%head
-		%title Cassadmin
-	%body
-		#content
-			= yield
+  %head
+    %title Cassadmin
+    %link{:rel=>"stylesheet", :type=>"text/css", :href=>"/style.css"}
+  %body
+    #wrapper-main
+      %header
+        = nav
+      #content
+        = yield

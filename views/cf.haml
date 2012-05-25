@@ -1,3 +1,4 @@
-- @cf.each do |k,v|
-    %p
-        %a{:href => "/keyspaces/#{@keyspace}/#{k}"}= k
+%h1 Column families
+- @cfContent.each do |k,v|
+  %p
+    %a{:href => "/keyspaces/#{@keyspace}/columnfamilies/#{k}/keys"}= k
