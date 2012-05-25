@@ -41,17 +41,17 @@ helpers do
     html << "<li class=\"page\"><a href=\"/\">Keyspaces</a></li>"
 
     if @keyspace
-      html << "<li>&raquo;<a href=\"/keyspaces/#{@keyspace}/columnfamilies\">#{@keyspace}</a></li>"
-      html << "<li class=\"page\">&raquo;<a href=\"/keyspaces/#{@keyspace}/columnfamilies\">Column families</a></li>"
+      html << "<li><span class=\"divider\">/</span><a href=\"/keyspaces/#{@keyspace}/columnfamilies\">#{@keyspace}</a></li>"
+      html << "<li class=\"page\"><span class=\"divider\">/</span><a href=\"/keyspaces/#{@keyspace}/columnfamilies\">Column families</a></li>"
     end
 
     if @cf
-      html << "<li>&raquo;<a href=\"/keyspaces/#{@keyspace}/columnfamilies/#{@cf}/keys\">#{@cf}</a></li>"
-      html << "<li class=\"page\">&raquo;<a href=\"/keyspaces/#{@keyspace}/columnfamilies/#{@cf}/keys\">Keys</a></li>"
+      html << "<li><span class=\"divider\">/</span><a href=\"/keyspaces/#{@keyspace}/columnfamilies/#{@cf}/keys\">#{@cf}</a></li>"
+      html << "<li class=\"page\"><span class=\"divider\">/</span><a href=\"/keyspaces/#{@keyspace}/columnfamilies/#{@cf}/keys\">Keys</a></li>"
     end
 
-    html << "<li>&raquo;<a href=\"/keyspaces/#{@keyspace}/columnfamilies/#{@cf}/keys/#{@key}\">#{@key}</a></li>" if @key
+    html << "<li><span class=\"divider\">/</span><a href=\"/keyspaces/#{@keyspace}/columnfamilies/#{@cf}/keys/#{@key}\">#{@key}</a></li>" if @key
 
-    "<ul id=\"nav\">#{html.join}</ul>"
+    "<ul class=\"breadcrumb\">#{html.join}</ul>"
   end
 end
