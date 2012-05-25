@@ -16,3 +16,7 @@ header{
 section h1{
   margin-bottom: 20px;
 }
+
+.well.limited{
+  width: 250px;
+}

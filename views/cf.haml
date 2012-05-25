@@ -1,4 +1,7 @@
 %h1 Column families
-- @cfContent.each do |k,v|
-  %p
-    %a{:href => "/keyspaces/#{@keyspace}/columnfamilies/#{k}/keys"}= k
+.well.limited
+  %ul.nav.nav-list
+    %li.nav-header= "#{@cfContent.count} column families found"
+    - @cfContent.each do |k,v|
+      %li
+        %a{:href => "/keyspaces/#{@keyspace}/columnfamilies/#{k}/keys"}= k

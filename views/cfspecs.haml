@@ -1,4 +1,7 @@
 %h1 Keys
-- @client.each(@cf) do |k,v|
-  %p
-    %a{:href => "/keyspaces/#{@keyspace}/columnfamilies/#{@cf}/keys/#{k}"}= k
+.well.limited
+  %ul.nav.nav-list
+    %li.nav-header= "keys found"
+    - @client.each(@cf) do |k,v|
+      %li
+        %a{:href => "/keyspaces/#{@keyspace}/columnfamilies/#{@cf}/keys/#{k}"}= k
