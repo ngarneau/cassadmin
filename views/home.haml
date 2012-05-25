@@ -1,3 +1,8 @@
-- @keyspaces.each do |k|
-    %p
-        %a{:href => "/keyspaces/#{k}"}= k
+%h1 Keyspaces
+.well.limited
+  %ul.nav.nav-list
+    %li.nav-header= "#{@keyspaces.count} keyspaces found"
+
+    - @keyspaces.each do |k|
+      %li
+        %a{:href => "/keyspaces/#{k}/columnfamilies"}= k
