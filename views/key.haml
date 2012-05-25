@@ -1,0 +1,7 @@
+%h1 Data
+
+%ul
+  - @data.each do |k, v|
+    %li
+      %strong= "#{k}:"
+      %span= v
