@@ -6,3 +6,5 @@
     - @keyspaces.each do |k|
       %li
         %a{:href => "/keyspaces/#{k}/columnfamilies"}= k
+%p
+  %a{:href => "/keyspaces/create"} Create a keyspace
